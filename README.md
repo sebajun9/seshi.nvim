@@ -1,0 +1,1 @@
+# seshi.nvim
