@@ -114,8 +114,6 @@ vim.api.nvim_create_autocmd({ 'User' }, {
     vim.cmd '%bd!'
   end,
 })
-
-
 ```
 
 
@@ -127,19 +125,23 @@ vim.api.nvim_create_autocmd({ 'User' }, {
 # Usage
 ## SeshiSave
 `:SeshiSave`
+
 Saves the session for the current directory and Git branch.
 
 ## SeshiList
 `:SeshiList`
+
 Opens a Telescope picket with a list of sessions. Making a selection loads the
 session. You can also delete a session by pressing the `delete_session` 
 keymap (default `<C-d`).
 
 ## SeshiLoadCurrent
 `:SeshiLoadCurrent`
+
 Tries to load a session for the current directory and branch.
 
 ## SeshiDeleteCurrent
 `:SeshiDeleteCurrent`
+
 Tries to delete an existing session for the current directory and branch.
 
