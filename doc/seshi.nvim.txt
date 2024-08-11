@@ -154,10 +154,6 @@ RESUMING FROM INSIDE               *seshi.nvim-scenarios-resuming-from-inside*
 
 DELETING A SESSION                   *seshi.nvim-scenarios-deleting-a-session*
 
-1. Run `:SeshiList`
-2. Highlight the session to delete
-3. Press the `delete_session` keymap (default `<C-d>`)
-
 
 SWITCHING SESSIONS                   *seshi.nvim-scenarios-switching-sessions*
 
