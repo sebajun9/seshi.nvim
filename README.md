@@ -86,11 +86,6 @@ Key map for deleting a session file while inside of Telescope.
 3. Select the session you want
 4. Start coding!
 
-## Deleting a session
-1. Run :SeshiList
-2. Highlight the session to delete
-3. Press the delete_session keymap (default <C-d>)
-
 ## Resuming from inside
 1. Start Neovim
 2. seshi.nvim will try to load a session file for the current project and branch
@@ -121,7 +116,10 @@ vim.api.nvim_create_autocmd({ 'User' }, {
 })
 ```
 
-
+## Deleting a session
+1. Run :SeshiList
+2. Highlight the session to delete
+3. Press the delete_session keymap (default <C-d>)
 
 # Usage
 ## SeshiSave
