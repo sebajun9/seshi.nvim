@@ -58,7 +58,7 @@ and active Git branch
 ```
 
 ## save_dir
-Session files will be saved to `save_dir`.
+Session files will be saved to and loaded from `save_dir`.
 
 ## autoload
 If `autoload` is set to `true`, upon loading `nvim` without any arguments, will
@@ -73,7 +73,23 @@ If `silent` is set to `true`, it will suppress print statements out of seshi.nvi
 #### delete-session
 Key map for deleting a session file while inside of Telescope.
 
+# Scenarios
+## First time running in a project
+1. Start Neovim in your project
+2. Open your buffers and windows
+3. Run `:SeshiSave`
+4. Your buffers and windows are now saved for the current directory and branch.
 
+## Resuming from outside a project directory
+1. Start Neovim
+2. Run `:SeshiList` to bring up a Telescope picker with available sessions
+3. Select the session you want
+4. Start coding!
+
+## Resuming from inside a project directory
+1. Start Neovim
+2. seshi.nvim will try to load a session file for the current project and branch.
+3. Start coding!
 
 # Usage
 ## SeshiSave
