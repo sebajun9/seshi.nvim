@@ -148,7 +148,7 @@ RESUMING FROM OUTSIDE             *seshi.nvim-scenarios-resuming-from-outside*
 RESUMING FROM INSIDE               *seshi.nvim-scenarios-resuming-from-inside*
 
 1. Start Neovim
-2. seshi.nvim will try to load a session file for the current project and branch
+2. `seshi.nvim` will try to load a session file for the current project and branch
 3. Start coding!
 
 
@@ -182,9 +182,9 @@ started:
 
 DELETING A SESSION                   *seshi.nvim-scenarios-deleting-a-session*
 
-1. Run :SeshiList
+1. Run `:SeshiList`
 2. Highlight the session to delete
-3. Press the delete_session keymap (default )
+3. Press the delete_session keymap (default `<C-d>`)
 
 
 ==============================================================================
@@ -204,7 +204,7 @@ SESHILIST                                         *seshi.nvim-usage-seshilist*
 
 Opens a Telescope picket with a list of sessions. Making a selection loads the
 session. You can also delete a session by pressing the `delete_session` keymap
-(default `<C-d`).
+(default `<C-d>`).
 
 
 SESHILOADCURRENT                           *seshi.nvim-usage-seshiloadcurrent*
