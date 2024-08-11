@@ -74,19 +74,19 @@ If `silent` is set to `true`, it will suppress print statements out of seshi.nvi
 Key map for deleting a session file while inside of Telescope.
 
 # Scenarios
-## First time running in a project
+## New session
 1. Start Neovim in your project
 2. Open your buffers and windows
 3. Run `:SeshiSave`
 4. Your buffers and windows are now saved for the current directory and branch
 
-## Resuming from outside a project directory
+## Resuming from outside
 1. Start Neovim
 2. Run `:SeshiList` to bring up a Telescope picker with available sessions
 3. Select the session you want
 4. Start coding!
 
-## Resuming from inside a project directory
+## Resuming from inside
 1. Start Neovim
 2. seshi.nvim will try to load a session file for the current project and branch
 3. Start coding!
@@ -118,6 +118,7 @@ vim.api.nvim_create_autocmd({ 'User' }, {
 
 ```
 
+
 ## Delete a session
 1. Run `:SeshiList`
 2. Highlight the session to delete
@@ -125,16 +126,20 @@ vim.api.nvim_create_autocmd({ 'User' }, {
 
 # Usage
 ## SeshiSave
+`:SeshiSave`
 Saves the session for the current directory and Git branch.
 
 ## SeshiList
+`:SeshiList`
 Opens a Telescope picket with a list of sessions. Making a selection loads the
 session. You can also delete a session by pressing the `delete_session` 
 keymap (default `<C-d`).
 
 ## SeshiLoadCurrent
+`:SeshiLoadCurrent`
 Tries to load a session for the current directory and branch.
 
 ## SeshiDeleteCurrent
+`:SeshiDeleteCurrent`
 Tries to delete an existing session for the current directory and branch.
 
