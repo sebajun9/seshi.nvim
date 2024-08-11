@@ -5,23 +5,23 @@ Seshi.nvim is a Git-aware session manager for Neovim with Telescope integration.
 # Features
 
 1. Git-aware Session Management
-- Creates and manages sessions based on the current Git branch
-- Automatically switches working directory and Git branch when loading a session
+    - Creates and manages sessions based on the current Git branch
+    - Automatically switches working directory and Git branch when loading a session
 
 2. Telescope Integration
-- Quick session switching using Telescope
-- Delete sessions using Telescope
+    - Quick session switching using Telescope
+    - Delete sessions using Telescope
 
 3. Autoload Functionality
-- Option to automatically load a session based on the current working directory
+    - Option to automatically load a session based on the current working directory
 and active Git branch
 
 4. Event Hooks
-- Trigger events before and after loading/saving sessions.
-- `SeshiLoadPre`
-- `SeshiLoadPost`
-- `SeshiSavePre`
-- `SeshiSavePost`
+    - Trigger events before and after loading/saving sessions.
+    - `SeshiLoadPre`
+    - `SeshiLoadPost`
+    - `SeshiSavePre`
+    - `SeshiSavePost`
 
 # Installation
 [Lazy.nvim](https://github.com/folke/lazy.nvim)
@@ -78,7 +78,7 @@ Key map for deleting a session file while inside of Telescope.
 1. Start Neovim in your project
 2. Open your buffers and windows
 3. Run `:SeshiSave`
-4. Your buffers and windows are now saved for the current directory and branch.
+4. Your buffers and windows are now saved for the current directory and branch
 
 ## Resuming from outside a project directory
 1. Start Neovim
@@ -88,9 +88,53 @@ Key map for deleting a session file while inside of Telescope.
 
 ## Resuming from inside a project directory
 1. Start Neovim
-2. seshi.nvim will try to load a session file for the current project and branch.
+2. seshi.nvim will try to load a session file for the current project and branch
 3. Start coding!
+
+## Switching sessions
+For switching sessions, it is recommended to use an autocmd to perform any clean
+up tasks before switching projects. Here is a basic autocmd to get started:
+
+```lua
+local seshi_group = vim.api.nvim_create_augroup('SeshiEvents', {})
+
+vim.api.nvim_create_autocmd({ 'User' }, {
+  pattern = 'SeshiLoadPre',
+  group = seshi_group,
+  callback = function()
+    -- Uncomment this if you want to save the current session before cleaning up.
+    -- local seshi = require 'seshi'
+    -- if seshi.current_session_exists() then
+    --   seshi.save_session()
+    -- end
+
+    -- Note that I've occasionally had strange interactions with other plugins
+    -- that create special buffers. My solution was to disable the offending 
+    -- plugins before running `%bd!` and then enabling them after.
+    vim.cmd '%bd!'
+  end,
+})
+
+
+```
+
+## Delete a session
+1. Run `:SeshiList`
+2. Highlight the session to delete
+3. Press the `delete_session` keymap (default `<C-d>`)
 
 # Usage
 ## SeshiSave
+Saves the session for the current directory and Git branch.
+
+## SeshiList
+Opens a Telescope picket with a list of sessions. Making a selection loads the
+session. You can also delete a session by pressing the `delete_session` 
+keymap (default `<C-d`).
+
+## SeshiLoadCurrent
+Tries to load a session for the current directory and branch.
+
+## SeshiDeleteCurrent
+Tries to delete an existing session for the current directory and branch.
 
