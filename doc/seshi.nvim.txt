@@ -16,7 +16,7 @@ Table of Contents                               *seshi.nvim-table-of-contents*
   - New session                             |seshi.nvim-scenarios-new-session|
   - Resuming from outside         |seshi.nvim-scenarios-resuming-from-outside|
   - Resuming from inside           |seshi.nvim-scenarios-resuming-from-inside|
-  - Deleting a session               |seshi.nvim-scenarios-deleting-a-session|
+  - This is a test section because it’s not working.|seshi.nvim-scenarios-this-is-a-test-section-because-it’s-not-working.|
   - Switching sessions               |seshi.nvim-scenarios-switching-sessions|
 6. Usage                                                    |seshi.nvim-usage|
   - SeshiSave                                     |seshi.nvim-usage-seshisave|
@@ -152,7 +152,7 @@ RESUMING FROM INSIDE               *seshi.nvim-scenarios-resuming-from-inside*
 3. Start coding!
 
 
-DELETING A SESSION                   *seshi.nvim-scenarios-deleting-a-session*
+THIS IS A TEST SECTION BECAUSE IT’S NOT WORKING.*seshi.nvim-scenarios-this-is-a-test-section-because-it’s-not-working.*
 
 
 SWITCHING SESSIONS                   *seshi.nvim-scenarios-switching-sessions*
