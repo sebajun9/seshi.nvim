@@ -15,7 +15,7 @@ Table of Contents                               *seshi.nvim-table-of-contents*
 5. Scenarios                                            |seshi.nvim-scenarios|
   - New session                             |seshi.nvim-scenarios-new-session|
   - Resuming from outside         |seshi.nvim-scenarios-resuming-from-outside|
-  - Test                                           |seshi.nvim-scenarios-test|
+  - Deleting a session               |seshi.nvim-scenarios-deleting-a-session|
   - Resuming from inside           |seshi.nvim-scenarios-resuming-from-inside|
   - Switching sessions               |seshi.nvim-scenarios-switching-sessions|
 6. Usage                                                    |seshi.nvim-usage|
@@ -145,7 +145,11 @@ RESUMING FROM OUTSIDE             *seshi.nvim-scenarios-resuming-from-outside*
 4. Start coding!
 
 
-TEST                                               *seshi.nvim-scenarios-test*
+DELETING A SESSION                   *seshi.nvim-scenarios-deleting-a-session*
+
+1. Run :SeshiList
+2. Highlight the session to delete
+3. Press the delete_session keymap (default )
 
 
 RESUMING FROM INSIDE               *seshi.nvim-scenarios-resuming-from-inside*
