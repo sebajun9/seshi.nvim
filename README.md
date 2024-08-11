@@ -91,7 +91,7 @@ Key map for deleting a session file while inside of Telescope.
 2. seshi.nvim will try to load a session file for the current project and branch
 3. Start coding!
 
-## Deleting a session
+## This is a test section because it's not working.
 
 ## Switching sessions
 For switching sessions, it is recommended to use an autocmd to perform any clean
