@@ -15,8 +15,8 @@ Table of Contents                               *seshi.nvim-table-of-contents*
 5. Scenarios                                            |seshi.nvim-scenarios|
   - New session                             |seshi.nvim-scenarios-new-session|
   - Resuming from outside         |seshi.nvim-scenarios-resuming-from-outside|
+  - Test                                           |seshi.nvim-scenarios-test|
   - Resuming from inside           |seshi.nvim-scenarios-resuming-from-inside|
-  - This is a test section because it’s not working.|seshi.nvim-scenarios-this-is-a-test-section-because-it’s-not-working.|
   - Switching sessions               |seshi.nvim-scenarios-switching-sessions|
 6. Usage                                                    |seshi.nvim-usage|
   - SeshiSave                                     |seshi.nvim-usage-seshisave|
@@ -145,14 +145,14 @@ RESUMING FROM OUTSIDE             *seshi.nvim-scenarios-resuming-from-outside*
 4. Start coding!
 
 
+TEST                                               *seshi.nvim-scenarios-test*
+
+
 RESUMING FROM INSIDE               *seshi.nvim-scenarios-resuming-from-inside*
 
 1. Start Neovim
 2. seshi.nvim will try to load a session file for the current project and branch
 3. Start coding!
-
-
-THIS IS A TEST SECTION BECAUSE IT’S NOT WORKING.*seshi.nvim-scenarios-this-is-a-test-section-because-it’s-not-working.*
 
 
 SWITCHING SESSIONS                   *seshi.nvim-scenarios-switching-sessions*
