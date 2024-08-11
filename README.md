@@ -91,6 +91,11 @@ Key map for deleting a session file while inside of Telescope.
 2. seshi.nvim will try to load a session file for the current project and branch
 3. Start coding!
 
+## Delete a session
+1. Run `:SeshiList`
+2. Highlight the session to delete
+3. Press the `delete_session` keymap (default `<C-d>`)
+
 ## Switching sessions
 For switching sessions, it is recommended to use an autocmd to perform any clean
 up tasks before switching projects. Here is a basic autocmd to get started:
@@ -117,10 +122,6 @@ vim.api.nvim_create_autocmd({ 'User' }, {
 ```
 
 
-## Delete a session
-1. Run `:SeshiList`
-2. Highlight the session to delete
-3. Press the `delete_session` keymap (default `<C-d>`)
 
 # Usage
 ## SeshiSave
