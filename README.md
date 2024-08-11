@@ -1,3 +1,80 @@
 # seshi.nvim
 
-Session management for Neovim with support for Git branches.
+Seshi.nvim is a Git-aware session manager for Neovim with Telescope integration.
+
+# Features
+
+1. Git-aware Session Management
+- Creates and manages sessions based on the current Git branch
+- Automatically switches working directory and Git branch when loading a session
+
+2. Telescope Integration
+- Quick session switching using Telescope
+- Delete sessions using Telescope
+
+3. Autoload Functionality
+- Option to automatically load a session based on the current working directory
+and active Git branch
+
+4. Event Hooks
+- Trigger events before and after loading/saving sessions.
+- `SeshiLoadPre`
+- `SeshiLoadPost`
+- `SeshiSavePre`
+- `SeshiSavePost`
+
+# Installation
+[Lazy.nvim](https://github.com/folke/lazy.nvim)
+```lua
+-- Lua
+{
+    "sebajun9/seshi.nvim",
+    lazy = false, -- Required only if autoloading.
+    opt = {}
+}
+
+```
+# Configuration
+
+## Defaults
+```lua
+-- Lua
+{
+    "sebajun9/seshi.nvim",
+    lazy = false, -- Required only if autoloading.
+    opt = {
+        save_dir = vim.fn.expand(vim.fn.stdpath('data') .. '/sessions/'),
+        autoload = true,
+        silent = false,
+        telescope = {
+          mappings = {
+            delete_session = '<C-d>',
+          },
+        },
+      }
+    }
+}
+
+```
+
+## save_dir
+Session files will be saved to `save_dir`.
+
+## autoload
+If `autoload` is set to `true`, upon loading `nvim` without any arguments, will
+attempt to load an existing session file for the current working directory and
+Git branch.
+
+## silent
+If `silent` is set to `true`, it will suppress print statements out of seshi.nvim.
+
+## telescope
+### mappings
+#### delete-session
+Key map for deleting a session file while inside of Telescope.
+
+
+
+# Usage
+## SeshiSave
+
