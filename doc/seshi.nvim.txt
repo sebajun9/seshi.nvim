@@ -1,4 +1,4 @@
-*seshi.nvim.txt*          For NVIM v0.10.0         Last change: 2024 August 11
+*seshi.nvim.txt*          For NVIM v0.10.0         Last change: 2024 August 14
 
 ==============================================================================
 Table of Contents                               *seshi.nvim-table-of-contents*
@@ -8,14 +8,10 @@ Table of Contents                               *seshi.nvim-table-of-contents*
 3. Installation                                      |seshi.nvim-installation|
 4. Configuration                                    |seshi.nvim-configuration|
   - Defaults                               |seshi.nvim-configuration-defaults|
-  - save_dir                               |seshi.nvim-configuration-save_dir|
-  - autoload                               |seshi.nvim-configuration-autoload|
-  - silent                                   |seshi.nvim-configuration-silent|
-  - telescope                             |seshi.nvim-configuration-telescope|
 5. Scenarios                                            |seshi.nvim-scenarios|
   - New session                             |seshi.nvim-scenarios-new-session|
-  - Resuming from outside         |seshi.nvim-scenarios-resuming-from-outside|
-  - Resuming from inside           |seshi.nvim-scenarios-resuming-from-inside|
+  - Loading a session                 |seshi.nvim-scenarios-loading-a-session|
+  - Autoloading a session         |seshi.nvim-scenarios-autoloading-a-session|
   - Switching sessions               |seshi.nvim-scenarios-switching-sessions|
   - Deleting a session               |seshi.nvim-scenarios-deleting-a-session|
 6. Usage                                                    |seshi.nvim-usage|
@@ -84,6 +80,7 @@ DEFAULTS                                   *seshi.nvim-configuration-defaults*
         opt = {
             save_dir = vim.fn.expand(vim.fn.stdpath('data') .. '/sessions/'),
             autoload = true,
+            use_git_root = true,
             silent = false,
             telescope = {
               mappings = {
@@ -95,34 +92,17 @@ DEFAULTS                                   *seshi.nvim-configuration-defaults*
     }
 <
 
-
-SAVE_DIR                                   *seshi.nvim-configuration-save_dir*
-
-Session files will be saved to and loaded from `save_dir`.
-
-
-AUTOLOAD                                   *seshi.nvim-configuration-autoload*
-
-If `autoload` is set to `true`, upon loading `nvim` without any arguments, will
-attempt to load an existing session file for the current working directory and
-Git branch.
-
-
-SILENT                                       *seshi.nvim-configuration-silent*
-
-If `silent` is set to `true`, it will suppress print statements out of
-seshi.nvim.
-
-
-TELESCOPE                                 *seshi.nvim-configuration-telescope*
-
-
-MAPPINGS ~
-
-
-DELETE-SESSION
-
-Key map for deleting a session file while inside of Telescope.
+- `save_dir` Session files will be saved to and loaded from `save_dir`.
+- `autoload` If `autoload` is set to `true`, upon loading `nvim` without any
+    arguments, will attempt to load an existing session file for the current
+    working directory and Git branch.
+- `use_git_root` If `use_git_root` is set to false, session files are associated
+    with the working directory `:SeshiSave` was run in. If set to true, session
+    files are associated with the root directory of the repository.
+- `silent` If `silent` is set to `true`, it will suppress print statements out of
+    seshi.nvim.
+- `telescope.mappings.delete-session` Key map for deleting a session file while
+    inside of Telescope.
 
 
 ==============================================================================
@@ -137,7 +117,7 @@ NEW SESSION                                 *seshi.nvim-scenarios-new-session*
 4. Your buffers and windows are now saved for the current directory and branch
 
 
-RESUMING FROM OUTSIDE             *seshi.nvim-scenarios-resuming-from-outside*
+LOADING A SESSION                     *seshi.nvim-scenarios-loading-a-session*
 
 1. Start Neovim
 2. Run `:SeshiList` to bring up a Telescope picker with available sessions
@@ -145,7 +125,7 @@ RESUMING FROM OUTSIDE             *seshi.nvim-scenarios-resuming-from-outside*
 4. Start coding!
 
 
-RESUMING FROM INSIDE               *seshi.nvim-scenarios-resuming-from-inside*
+AUTOLOADING A SESSION             *seshi.nvim-scenarios-autoloading-a-session*
 
 1. Start Neovim
 2. `seshi.nvim` will try to load a session file for the current project and branch
