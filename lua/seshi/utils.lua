@@ -15,7 +15,9 @@ function M.get_current_session_save_filepath(save_dir, use_git_root)
   local cwd = ''
   if use_git_root then
     cwd = M.encode_path(M.get_git_root())
-  else
+  end
+  -- Fallback if use_git_root fails or we don't use it at all.
+  if cwd == '' then
     cwd = M.encode_path(vim.uv.cwd())
   end
   local branch_name = M.encode_path(M.get_git_branch())
