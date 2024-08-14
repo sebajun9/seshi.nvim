@@ -45,7 +45,8 @@ function M.load_session(session_filepath)
 end
 
 function M.load_current_directory_session()
-  local session_save_filepath = utils.get_current_session_save_filepath(M.options.save_dir)
+  local session_save_filepath =
+    utils.get_current_session_save_filepath(M.options.save_dir, M.options.use_git_root)
   if not vim.uv.fs_stat(session_save_filepath) then
     if not M.options.silent then
       print('Seshi: Could not find session file: ' .. session_save_filepath)
@@ -63,7 +64,8 @@ end
 function M.save_session()
   vim.api.nvim_exec_autocmds('User', { pattern = 'SeshiSavePre' })
 
-  local session_save_filepath = utils.get_current_session_save_filepath(M.options.save_dir)
+  local session_save_filepath =
+    utils.get_current_session_save_filepath(M.options.save_dir, M.options.use_git_root)
   vim.cmd('mks! ' .. vim.fn.fnameescape(session_save_filepath))
 
   vim.api.nvim_exec_autocmds('User', { pattern = 'SeshiSavePost' })

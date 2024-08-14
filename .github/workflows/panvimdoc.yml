@@ -1,0 +1,34 @@
+name: panvimdoc
+
+on: [push]
+
+permissions:
+  contents: write
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    name: pandoc to vimdoc
+    steps:
+      - uses: actions/checkout@v2
+      - name: panvimdoc
+        uses: kdheepak/panvimdoc@main
+        with:
+          vimdoc: seshi.nvim
+          pandoc: "README.md"
+          version: "NVIM v0.10.0"
+          toc: true
+          description: ""
+          titledatepattern: "%Y %B %d"
+          demojify: false
+          dedupsubheadings: true
+          treesitter: true
+          ignorerawblocks: true
+          docmapping: false
+          docmappingprojectname: true
+          shiftheadinglevelby: 0
+          incrementheadinglevelby: 0
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Auto generate docs"
+          branch: ${{ github.ref }}
