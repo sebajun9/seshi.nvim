@@ -7,49 +7,53 @@ local action_state = require('telescope.actions.state')
 local seshi = require('seshi')
 local utils = require('seshi.utils')
 
-local function list_sessions()
-  local sessions = {}
-  local save_dir = seshi.options.save_dir
-  local files = vim.fn.glob(save_dir .. '*', false, true)
-
-  for _, file in ipairs(files) do
-    local session_name = vim.fn.fnamemodify(file, ':t')
-    local dir_path, branch = utils.split_session_filename(session_name)
-    -- Decode the path and branch
-    dir_path = utils.decode_path(dir_path)
-    branch = branch and utils.decode_path(branch) or nil
-
-    table.insert(sessions, {
-      name = session_name,
-      file_path = file,
-      dir_path = dir_path,
-      branch = branch,
-    })
-  end
-
-  return sessions
-end
-
 local function search_sessions(opts)
   opts = opts or {}
+
+  local function list_sessions()
+    local sessions = {}
+    local save_dir = seshi.options.save_dir
+    local files = vim.fn.glob(save_dir .. '*', false, true)
+
+    for _, file in ipairs(files) do
+      local session_name = vim.fn.fnamemodify(file, ':t')
+      local dir_path, branch = utils.split_session_filename(session_name)
+      -- Decode the path and branch
+      dir_path = utils.decode_path(dir_path)
+      branch = branch and utils.decode_path(branch) or nil
+
+      table.insert(sessions, {
+        name = session_name,
+        file_path = file,
+        dir_path = dir_path,
+        branch = branch,
+      })
+    end
+
+    return sessions
+  end
+
+  local function make_finder()
+    return finders.new_table({
+      results = list_sessions(),
+      entry_maker = function(entry)
+        local display = entry.dir_path
+        if entry.branch then
+          display = display .. ' (' .. entry.branch .. ')'
+        end
+        return {
+          value = entry,
+          display = display,
+          ordinal = entry.name,
+        }
+      end,
+    })
+  end
 
   pickers
     .new(opts, {
       prompt_title = 'Sessions',
-      finder = finders.new_table({
-        results = list_sessions(),
-        entry_maker = function(entry)
-          local display = entry.dir_path
-          if entry.branch then
-            display = display .. ' (' .. entry.branch .. ')'
-          end
-          return {
-            value = entry,
-            display = display,
-            ordinal = entry.name,
-          }
-        end,
-      }),
+      finder = make_finder(),
       sorter = conf.generic_sorter(opts),
       attach_mappings = function(prompt_bufnr, map)
         actions.select_default:replace(function()
@@ -63,6 +67,8 @@ local function search_sessions(opts)
           if selection then
             local file_path = selection.value.file_path
             seshi.delete_session(file_path)
+            local current_picker = action_state.get_current_picker(prompt_bufnr)
+            current_picker:refresh(make_finder(), { reset_prompt = false })
           end
         end)
         return true

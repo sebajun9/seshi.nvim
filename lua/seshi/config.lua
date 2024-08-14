@@ -5,7 +5,7 @@ function M.defaults()
     save_dir = vim.fn.expand(vim.fn.stdpath('data') .. '/sessions/'),
     autoload = true,
     use_git_root = true,
-    silent = false,
+    silent = true,
     telescope = {
       mappings = {
         delete_session = '<C-d>',
