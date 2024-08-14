@@ -45,6 +45,7 @@ and active Git branch
     opt = {
         save_dir = vim.fn.expand(vim.fn.stdpath('data') .. '/sessions/'),
         autoload = true,
+        use_git_root = true,
         silent = false,
         telescope = {
           mappings = {
@@ -57,20 +58,23 @@ and active Git branch
 
 ```
 
-## save_dir
+- `save_dir`
 Session files will be saved to and loaded from `save_dir`.
 
-## autoload
+- `autoload`
 If `autoload` is set to `true`, upon loading `nvim` without any arguments, will
 attempt to load an existing session file for the current working directory and
 Git branch.
 
-## silent
+- `use_git_root`
+If `use_git_root` is set to false, session files are associated with the working
+directory `:SeshiSave` was run in. If set to true, session files are associated
+with the root directory of the repository.
+
+- `silent`
 If `silent` is set to `true`, it will suppress print statements out of seshi.nvim.
 
-## telescope
-### mappings
-#### delete-session
+- `telescope.mappings.delete-session`
 Key map for deleting a session file while inside of Telescope.
 
 # Scenarios
@@ -80,13 +84,13 @@ Key map for deleting a session file while inside of Telescope.
 3. Run `:SeshiSave`
 4. Your buffers and windows are now saved for the current directory and branch
 
-## Resuming from outside
+## Loading a session
 1. Start Neovim
 2. Run `:SeshiList` to bring up a Telescope picker with available sessions
 3. Select the session you want
 4. Start coding!
 
-## Resuming from inside
+## Autoloading a session
 1. Start Neovim
 2. `seshi.nvim` will try to load a session file for the current project and branch
 3. Start coding!
