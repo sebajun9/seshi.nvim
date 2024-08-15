@@ -26,7 +26,7 @@ end
 
 function M.load_session(session_filepath)
   if not vim.uv.fs_stat(session_filepath) then
-    print('Seshi: File not found: ' .. session_filepath)
+    vim.api.nvim_err_writeln('Seshi: File not found: ' .. session_filepath)
     return
   end
 
@@ -36,10 +36,15 @@ function M.load_session(session_filepath)
   local session_path, branch_name = utils.split_session_filename(session_filename)
   session_path = utils.decode_path(session_path)
   branch_name = utils.decode_path(branch_name)
+  local git_switch = vim.fn.system('git -C ' .. session_path .. ' switch ' .. branch_name)
+  if git_switch:match('error: ') then
+    vim.api.nvim_err_writeln(git_switch)
+    vim.api.nvim_err_writeln('seshi.nvim: Failed to switch branch. Abort loading session.')
+    return
+  end
   vim.fn.chdir(session_path)
-  vim.fn.system('git switch ' .. branch_name)
   local session_filepath_escaped = vim.fn.fnameescape(session_filepath)
-  vim.cmd('source ' .. session_filepath_escaped)
+  vim.cmd('silent source ' .. session_filepath_escaped)
 
   vim.api.nvim_exec_autocmds('User', { pattern = 'SeshiLoadPost' })
 end
